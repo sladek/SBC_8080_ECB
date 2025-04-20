@@ -6,7 +6,7 @@
 
 Below is an image depicting the latest definition of the ECB bus as utilized by the RetroBrew Computers group. It also addresses issues related to the /RESET and /RESOUT pin definitions and the solutions implemented. This design incorporates a 3-pin jumper header to allow for the selection of the appropriate configuration.
 
-![](/home/sladekm/git/SBC_8080_ECB/Pictures/ECB.jpg)
+![](Pictures/ECB.jpg)
 
 The German firm Kontron defined what is believed to be the earliest bus using the 96-pin DIN 41612 EuroCard connectors. The bus for their Z80 offering used only the A-row and C-row pins; the B-row was left entirely unused to allow for the use of 64-pin connectors in the 96-pin format.
 
