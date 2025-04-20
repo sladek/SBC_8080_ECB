@@ -1,4 +1,4 @@
-![](/home/sladekm/git/SBC_8080_ECB/Pictures/SBC_8080_ECB.jpg)
+![](Pictures/SBC_8080_ECB.jpg)
 
 ## ECB bus history
 
@@ -18,18 +18,9 @@ The resolution to the above mistake is that all the newer CPU and peripheral boa
 
 ## Generate baud rate for 8251
 
-### From chat gpt question:
-
-How to use 8253 as baud rate generator
-
 ### Response:
 
-The **8253
-Programmable Interval Timer (PIT)** can be used as a **baud rate
-generator** for serial
-communication by generating clock pulses at the required frequency.
-This is done by programming one of its three counters to divide an
-input clock signal down to the desired baud rate.
+The **8253 Programmable Interval Timer (PIT)** can be used as a **baud rate generator** for serial communication by generating clock pulses at the required frequency. This is done by programming one of its three counters to divide an input clock signal down to the desired baud rate.
 
 ### Steps to Use 8253 as Baud Rate Generator
 
@@ -61,9 +52,7 @@ input clock signal down to the desired baud rate.
    - Start the timer and route its output to the serial communication hardware (like 8251 USART or UART).
 
 5. **Connect Output to Serial**
-   Device:The output of the **8253 counter** is connected to the baud rate
-   clock input of a serial communication device like the **8251
-   USART** or a UART module.
+   Device: The output of the **8253 counter** is connected to the baud rate clock input of a serial communication device like the **8251 USART** or a UART module.
 
 ### Example: Setting Baud rate for 9600 using 1.8432 MHz Clock
 
@@ -75,14 +64,19 @@ input clock signal down to the desired baud rate.
 
 #### **Programming Steps (for an x86-based system)**
 
-assembly
-CopyEdit
-`MOV AL, 34H    ; Control Word: Counter 0, Mode 2, LSB/MSB`
-`OUT 43H, AL    ; Send control word to 8253`
-`MOV AL, 192    ; Load LSB (Least Significant Byte)`
-`OUT 40H, AL    ; Send LSB to Counter 0`
-`MOV AL, 0      ; Load MSB (Most Significant Byte)`
-`OUT 40H, AL    ; Send MSB to Counter 0`
+Assembly code
+
+
+
+
+```
+	MOV AL, 34H    ; Control Word: Counter 0, Mode 2, LSB/MSB
+	OUT 43H, AL    ; Send control word to 8253
+	MOV AL, 192    ; Load LSB (Least Significant Byte)
+	OUT 40H, AL    ; Send LSB to Counter 0
+	MOV AL, 0      ; Load MSB (Most Significant Byte)
+	OUT 40H, AL    ; Send MSB to Counter 0
+```
 
 - **43H** → Control port of **8253**
 
@@ -115,7 +109,7 @@ This setup allows the **8253** to act as a **baud rate generator** for serial co
 
 As crystal frequency is 18.432 Mhz and it is outputted from I8224, we can use that frequency to generate baud rate clock signal for I8251. Below is the solution.
 
-<img src="file:///home/sladekm/git/SBC_8080_ECB/Pictures/BaudRateDivider.jpg" title="" alt="" width="421">
+<img title="" src="Pictures/BaudRateDivider.jpg" alt="" width="421">
 
 74LS390 contains two decade counters, where /CP0 → Q0 functions as a divider by 2, and /CP1 → Q1, Q2, Q3 operates as a divider by 5. We send an 18.432 MHz clock signal from I8224 to /CP1; it is divided by 5 and then fed to /CP0, where it is divided by 2. This arrangement will generate a square signal with an exact 50% duty cycle. The output signal from Q0 is then fed to the I8252 timer, where the appropriate baud rate can be generated.
 
@@ -123,7 +117,7 @@ As crystal frequency is 18.432 Mhz and it is outputted from I8224, we can use th
 
 In the picture below you can see shadow FLASH select logic schematics.
 
-<img src="file:///home/sladekm/git/SBC_8080_ECB/Pictures/ShadowFlashSelectLogic.jpg" title="" alt="" width="424">
+<img title="" src="Pictures/ShadowFlashSelectLogic.jpg" alt="" width="424">
 
 After /RESET (at this point, the /SRAMSELECT signal from the IO decoder is HIGH), /SRAM_SEL is HIGH and /FLASH_SEL is LOW. Now /SRAM_OE is HIGH (the DATA from RAM are in high impedance, although writing is not prohibited), so the /RD signal has no effect on /SRAM_OE. Only changes in /MEMRQ will impact the /FLASH_MREQ signal, which means that only FLASH memory can be accessed, either for reading or for writing. So it is also possible to flash the memory using a programmer connected to the ECB bus. A simulation has also been conducted in Verilog (via iVerilog) and can be seen below.
 
@@ -202,7 +196,7 @@ endmodule
 
 Simulation result in gtkwave is shown below.
 
-<img src="file:///home/sladekm/git/SBC_8080_ECB/Pictures/ShadowFlashGtkwave.jpg" title="" alt="" width="489">
+<img title="" src="Pictures/ShadowFlashGtkwave.jpg" alt="" width="489">
 
 ### ECB bus data direction
 
@@ -212,7 +206,7 @@ Signal DATA_DIR Select the direction of the data buffer. If DATA_DIR is log 0, d
 
 This is done by the circuit below. Basically, the upper part (/MEMRQ, /RD, /IOSEL, which is low when internal peripherals are selected) takes care of standard operations, and the upper part is involved when there is a request from the ECB bus. (/RD, /BUSAK)
 
-![](/home/sladekm/git/SBC_8080_ECB/Pictures/EcbBusDataDirrection.jpg)
+![](Pictures/EcbBusDataDirrection.jpg)
 
 
 
@@ -288,7 +282,7 @@ endmodule
 
 And the simulation result is below.
 
-![](/home/sladekm/git/SBC_8080_ECB/Pictures/EcbDataDirGtkwave.jpg)
+![](Pictures/EcbDataDirGtkwave.jpg)
 
 
 
@@ -296,7 +290,7 @@ And the simulation result is below.
 
 Internal peripherals are selected by the following decoder.
 
-<img src="file:///home/sladekm/git/SBC_8080_ECB/Pictures/AddressDecoder.jpg" title="" alt="" width="462">
+<img title="" src="Pictures/AddressDecoder.jpg" alt="" width="462">
 
 
 
@@ -315,7 +309,7 @@ Where base addresses of peripherals are in the following table.
 
 Below is verilog simulation result for the decoder.
 
-<img src="file:///home/sladekm/git/SBC_8080_ECB/Pictures/AddressDecoderGtkwave.jpg" title="" alt="" width="743">
+<img title="" src="Pictures/AddressDecoderGtkwave.jpg" alt="" width="743">
 
 
 
