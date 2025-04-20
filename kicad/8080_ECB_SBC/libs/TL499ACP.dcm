@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TL499ACP
+D Wide-Range Power-Supply Controller
+K
+F http://www.ti.com/lit/gpn/tl499a
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TC962EPA
+D Microchip TC962EPA, Charge Pump Inverting 80mA 24 kHz, -3  -18 V, 8-Pin, PDIP
+K
+F https://componentsearchengine.com/Datasheets/2/TC962EPA.pdf
+$ENDCMP
+#
+#End Doc Library

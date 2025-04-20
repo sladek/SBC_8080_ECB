@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MPX1D0530L100
+D KEMET, MPX, Power, 10 uH, 20%, 155C, -55C, 0530(2120), 3.1 A, 140.1 mOhms, 18 MHz, 2500, 5.3mm, 5.5mm, 5mm, 5.2mm, 3mm, 3mm
+K
+F https://content.kemet.com/datasheets/KEM_L9012_MPX.pdf
+$ENDCMP
+#
+#End Doc Library

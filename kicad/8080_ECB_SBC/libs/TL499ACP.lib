@@ -1,0 +1,29 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model TL499ACP
+#/753494/1184053/2.50/8/3/Integrated Circuit
+DEF TL499ACP IC 0 30 Y Y 1 F N
+F0 "IC" 1750 300 50 H V L CNN
+F1 "TL499ACP" 1750 200 50 H V L CNN
+F2 "DIP794W53P254L959H508Q8N" 1750 100 50 H I L CNN
+F3 "http://www.ti.com/lit/gpn/tl499a" 1750 0 50 H I L CNN
+F4 "Wide-Range Power-Supply Controller" 1750 -100 50 H I L CNN "Description"
+F5 "5.08" 1750 -200 50 H I L CNN "Height"
+F6 "595-TL499ACP" 1750 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/TL499ACP?qs=RZS%252BpEsUn7oZHEIwSFznOg%3D%3D" 1750 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Texas Instruments" 1750 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TL499ACP" 1750 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X SERIES_IN1 1 0 0 200 R 50 50 0 0 P
+X REF 2 0 -100 200 R 50 50 0 0 P
+X SW_REG_IN2 3 0 -200 200 R 50 50 0 0 P
+X SW_CURRENT_CTRL 4 0 -300 200 R 50 50 0 0 P
+X OUTPUT 8 1900 0 200 L 50 50 0 0 P
+X GND_(PWR) 7 1900 -100 200 L 50 50 0 0 P
+X SW_IN 6 1900 -200 200 L 50 50 0 0 P
+X GND 5 1900 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 1700 100 1700 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP RDE5C1H390J0P1H03B
+D Capacitor L=5.0mm W=3.5mm T=2.5mmr, 39 pF, 50 V, +/- 5%, PC Pin, C0G / NP0, 2.5 mm
+K
+F https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/RDE_C0G_50V-100V_E.pdf
+$ENDCMP
+#
+#End Doc Library

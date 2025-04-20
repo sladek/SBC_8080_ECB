@@ -1,0 +1,26 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model MPX1D0530L100
+#/2388791/1184053/2.50/2/2/Inductor
+DEF MPX1D0530L100 L 0 30 Y Y 1 F N
+F0 "L" 650 250 50 H V L CNN
+F1 "MPX1D0530L100" 650 150 50 H V L CNN
+F2 "INDPM5350X300N" 650 50 50 H I L CNN
+F3 "https://content.kemet.com/datasheets/KEM_L9012_MPX.pdf" 650 -50 50 H I L CNN
+F4 "KEMET, MPX, Power, 10 uH, 20%, 155C, -55C, 0530(2120), 3.1 A, 140.1 mOhms, 18 MHz, 2500, 5.3mm, 5.5mm, 5mm, 5.2mm, 3mm, 3mm" 650 -150 50 H I L CNN "Description"
+F5 "3" 650 -250 50 H I L CNN "Height"
+F6 "80-MPX1D0530L100" 650 -350 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/KEMET/MPX1D0530L100?qs=vLWxofP3U2yMg8hqU%2FE%252BgQ%3D%3D" 650 -450 50 H I L CNN "Mouser Price/Stock"
+F8 "KEMET" 650 -550 50 H I L CNN "Manufacturer_Name"
+F9 "MPX1D0530L100" 650 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X ~ 1 0 0 200 R 50 50 0 0 P
+X ~ 2 800 0 200 L 50 50 0 0 P
+A 250 -2 50 1777 -23 0 1 6 N 300 0 200 0
+A 350 -2 50 1777 -23 0 1 6 N 400 0 300 0
+A 450 -2 50 1777 -23 0 1 6 N 500 0 400 0
+A 550 -2 50 1777 -23 0 1 6 N 600 0 500 0
+ENDDRAW
+ENDDEF
+#
+#End Library

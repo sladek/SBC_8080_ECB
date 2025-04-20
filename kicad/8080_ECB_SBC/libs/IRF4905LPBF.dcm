@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP IRF4905LPBF
+D MOSFET P-Channel 55V 70A TO262 Infineon IRF4905LPBF P-channel MOSFET Transistor, 74 A, 55 V, 3-Pin TO-262
+K
+F https://componentsearchengine.com/Datasheets/2/IRF4905LPBF.pdf
+$ENDCMP
+#
+#End Doc Library

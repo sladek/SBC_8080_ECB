@@ -1,0 +1,16 @@
+ERC report (Tue 25 Mar 2025 00:25:46 CET, Encoding UTF8)
+
+***** Sheet /
+
+***** Sheet /CPU/
+
+***** Sheet /ECB_BUS/
+
+***** Sheet /IO_PIC/
+[lib_symbol_issues]: Symbol '8251' has been modified in library '8251'
+    ; Severity: warning (excluded)
+    @(5.2000 in, 4.6750 in): Symbol U19 [8251]
+
+***** Sheet /MEM/
+
+ ** ERC messages: 1  Errors 0  Warnings 1
