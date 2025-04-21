@@ -1,5 +1,24 @@
 ![](Pictures/SBC_8080_ECB.jpg)
 
+## SBC 8080 ECB microcomputer
+
+This is my attempt to build a single-board microcomputer based on the Intel 8080 CPU. It contains the following features:
+
+- extended 512k x 8-bit SRAM that can be fully accessed via paging.
+
+- 128 x 8-bit FLASH EPROM that is accessible after RESET so it can contain a bootloader, which can be moved to SRAM and boot the operating system or monitor program.
+
+- Programmable Interrupt Controller Intel 8259.
+
+- Programmable Interval Timer Intel 8253, which is used for baud rate generation and can also generate an interrupt and be connected to the speaker.
+
+- Universal Synchronous/Asynchronous Receiver/Transmitter (USART) Intel 8251 used as serial console so SBC can be accessed directly via RS232 interface.
+
+- ECB bus interface, which can be used for microcomputer extensions. The ECB bus interface facilitates communication between the main processor and various peripheral devices, enabling system expansion and enhancing functionality. Additionally, it allows for the integration of specialized hardware components, which can further optimize performance and adaptability in various applications. History of ECB bus is described below.
+
+Here you can find a schematics for the SBC. Kicad files are also available in this repository. 
+[SBC_8080_ECB schematics.](Documentation/SBC_8080_ECB_.pdf)
+
 ## ECB bus history
 
 (https://www.retrobrewcomputers.org/doku.php?id=boards:ecb:start)
@@ -66,16 +85,13 @@ The **8253 Programmable Interval Timer (PIT)** can be used as a **baud rate gene
 
 Assembly code
 
-
-
-
 ```
-	MOV AL, 34H    ; Control Word: Counter 0, Mode 2, LSB/MSB
-	OUT 43H, AL    ; Send control word to 8253
-	MOV AL, 192    ; Load LSB (Least Significant Byte)
-	OUT 40H, AL    ; Send LSB to Counter 0
-	MOV AL, 0      ; Load MSB (Most Significant Byte)
-	OUT 40H, AL    ; Send MSB to Counter 0
+    MOV AL, 34H    ; Control Word: Counter 0, Mode 2, LSB/MSB
+    OUT 43H, AL    ; Send control word to 8253
+    MOV AL, 192    ; Load LSB (Least Significant Byte)
+    OUT 40H, AL    ; Send LSB to Counter 0
+    MOV AL, 0      ; Load MSB (Most Significant Byte)
+    OUT 40H, AL    ; Send MSB to Counter 0
 ```
 
 - **43H** → Control port of **8253**
@@ -120,10 +136,6 @@ In the picture below you can see shadow FLASH select logic schematics.
 <img title="" src="Pictures/ShadowFlashSelectLogic.jpg" alt="" width="424">
 
 After /RESET (at this point, the /SRAMSELECT signal from the IO decoder is HIGH), /SRAM_SEL is HIGH and /FLASH_SEL is LOW. Now /SRAM_OE is HIGH (the DATA from RAM are in high impedance, although writing is not prohibited), so the /RD signal has no effect on /SRAM_OE. Only changes in /MEMRQ will impact the /FLASH_MREQ signal, which means that only FLASH memory can be accessed, either for reading or for writing. So it is also possible to flash the memory using a programmer connected to the ECB bus. A simulation has also been conducted in Verilog (via iVerilog) and can be seen below.
-
-
-
-
 
 ```
 /*
@@ -189,10 +201,7 @@ module shadow_flash_select_logic_tb();
    or(FLASH_MREQ, FLASH_SEL, MEMRQ); 
 
 endmodule
-
 ```
-
-
 
 Simulation result in gtkwave is shown below.
 
@@ -208,11 +217,7 @@ This is done by the circuit below. Basically, the upper part (/MEMRQ, /RD, /IOSE
 
 ![](Pictures/EcbBusDataDirrection.jpg)
 
-
-
 Below you can see simulation code and simulation result.
-
-
 
 ```
 /*
@@ -277,22 +282,17 @@ module shadow_flash_select_logic_tb();
    and(DATA_DIR, RD_MREQ_IOSEL, RD_BUSAK);
 
 endmodule
-
 ```
 
 And the simulation result is below.
 
 ![](Pictures/EcbDataDirGtkwave.jpg)
 
-
-
 ### Peripherals address space
 
 Internal peripherals are selected by the following decoder.
 
 <img title="" src="Pictures/AddressDecoder.jpg" alt="" width="462">
-
-
 
 The address space with this circuit is 0x40 – 0x7f.
 
@@ -311,11 +311,7 @@ Below is verilog simulation result for the decoder.
 
 <img title="" src="Pictures/AddressDecoderGtkwave.jpg" alt="" width="743">
 
-
-
 And the source code. I intentionally use primitives for simulation of 74LS138 to prevent some simulation glitches I got when I tried to use behavioral modeling. It is quite simplified as I’ve just wanted to verify address space for peripherals.
-
-
 
 ```
 /*
@@ -381,5 +377,4 @@ module peripheral_decoder_tb();
   nand(A7_A6, A7_n, ADDRESS[6]);
   or(IOSEL_n, A7_A6, IORQ_n);
 endmodule
-
 ```
