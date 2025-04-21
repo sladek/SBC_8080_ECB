@@ -4,7 +4,7 @@
 
 This is my attempt to build a single-board microcomputer based on the Intel 8080 CPU. It contains the following features:
 
-- extended 512k x 8-bit SRAM that can be fully accessed via paging.
+- Extended 512k x 8-bit SRAM that can be fully accessed via paging.
 
 - 128 x 8-bit FLASH EPROM that is accessible after RESET so it can contain a bootloader, which can be moved to SRAM and boot the operating system or monitor program.
 
@@ -15,6 +15,8 @@ This is my attempt to build a single-board microcomputer based on the Intel 808
 - Universal Synchronous/Asynchronous Receiver/Transmitter (USART) Intel 8251 used as serial console so SBC can be accessed directly via RS232 interface.
 
 - ECB bus interface, which can be used for microcomputer extensions. The ECB bus interface facilitates communication between the main processor and various peripheral devices, enabling system expansion and enhancing functionality. Additionally, it allows for the integration of specialized hardware components, which can further optimize performance and adaptability in various applications. History of ECB bus is described below.
+
+- Voltage power supply for CPU: +5V, -5V, +12V which follows the requirement that -5V must be the first voltage present. It also contains inverter for -5V generation and a boost converter from 5V to 12V so the SBC can be powered only from one +5V power supply.
 
 Here you can find a schematics for the SBC. Kicad files are also available in this repository. 
 [SBC_8080_ECB schematics.](Documentation/SBC_8080_ECB_.pdf)
